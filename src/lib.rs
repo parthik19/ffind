@@ -6,7 +6,7 @@ use std::path;
 pub fn par_search(
     query: String,
     dir: path::PathBuf,
-    use_fuzzy_search: bool,
+    fuzzy_threshold: Option<f64>,
 ) -> Result<Vec<path::PathBuf>> {
     let mut paths = vec![];
 
@@ -18,9 +18,14 @@ pub fn par_search(
                     .to_str()
                     .expect("Failed parsing path to string");
 
-                // TODO make sure is_close does NOT get evaluated if use_fuzzy_search is false
-                if file_name == query || (use_fuzzy_search && is_close(file_name, &query)) {
-                    paths.push(entry.path())
+                let is_match = if let Some(threshold) = fuzzy_threshold {
+                    is_close(file_name, &query, threshold)
+                } else {
+                    file_name == query
+                };
+
+                if is_match {
+                    paths.push(entry.path());
                 }
             }
             Err(e) => {
@@ -36,6 +41,6 @@ pub fn par_search(
     Ok(paths)
 }
 
-fn is_close(a: &str, b: &str) -> bool {
-    strsim::normalized_levenshtein(a, b) >= 0.75
+fn is_close(a: &str, b: &str, threshold: f64) -> bool {
+    strsim::normalized_levenshtein(a, b) >= threshold
 }
