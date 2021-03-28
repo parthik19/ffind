@@ -9,6 +9,9 @@ use structopt::StructOpt;
 struct CLInput {
     query: String,
 
+    #[structopt(short, long)]
+    fuzzy: bool, // defaults to false if this flag not present
+
     #[structopt(parse(from_os_str))]
     starting_dir: Option<path::PathBuf>,
 }
@@ -22,14 +25,19 @@ fn main() -> Result<()> {
         input
             .starting_dir
             .unwrap_or_else(|| env::current_dir().expect("Failed determining current directory")),
+        input.fuzzy,
     )?;
     let duration = start.elapsed().as_millis();
 
-    for path in ffind_result {
-        println!(
-            "{}",
-            path.to_str().expect("Failed parsing path").cyan().bold()
-        );
+    if !ffind_result.is_empty() {
+        for path in ffind_result {
+            println!(
+                "{}",
+                path.to_str().expect("Failed parsing path").cyan().bold()
+            );
+        }
+    } else {
+        println!("{}", "No file matching that query found.".magenta());
     }
 
     println!("");
