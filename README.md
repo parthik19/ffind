@@ -31,6 +31,7 @@ You can generate usage via `ffind --help`.
 Took 21 msecs.
 ```
 
+
 This command will search for and print the path of any file with name `someFile.txt` in the current directory.
 
 ```console
@@ -39,6 +40,7 @@ test2Dir/someFile.txt
 
 Took 3 msecs.
 ```
+
 
 This command will search for and print the absolute path of any file with name `someFile.txt` in the `myDir` directory.
 
@@ -50,6 +52,7 @@ This command will search for and print the absolute path of any file with name `
 
 Took 6 msecs.
 ```
+
 
 This command will search for and print the absolute path of any file which has a name that is _close_ to `someFile.txt` in the current directory. The `-f` flag indicates the use of "fuzzy" search, and the following integer denotes the "strength" of the comparison. Providing a strength of `0` will match anything, while providing a strength of `100` will check for strict string equality. Behind the scenes, `ffind` uses the [Normalized Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) distance implemented by the [strsim](https://docs.rs/strsim/0.10.0/strsim/) crate.
 
