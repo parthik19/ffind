@@ -9,11 +9,11 @@ use structopt::StructOpt;
 struct CLInput {
     query: String,
 
-    #[structopt(short, long)]
-    fuzzy: bool, // defaults to false if this flag not present
-
     #[structopt(parse(from_os_str))]
     starting_dir: Option<path::PathBuf>,
+
+    #[structopt(short, long)]
+    fuzzy: Option<u8>,
 }
 
 fn main() -> Result<()> {
@@ -25,7 +25,7 @@ fn main() -> Result<()> {
         input
             .starting_dir
             .unwrap_or_else(|| env::current_dir().expect("Failed determining current directory")),
-        input.fuzzy,
+        input.fuzzy.map(|x| x as f64 / 100.0),
     )?;
     let duration = start.elapsed().as_millis();
 
