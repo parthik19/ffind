@@ -1,0 +1,13 @@
+[package]
+name = "ffind"
+version = "0.1.0"
+authors = ["parthik19 <parthik.j.patel@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+structopt = "0.3.21"
+anyhow = "1.0.40"
+colored = "2.0.0"
+jwalk = "0.6.0"
