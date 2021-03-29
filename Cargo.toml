@@ -3,6 +3,15 @@ name = "ffind"
 version = "0.1.0"
 authors = ["parthik19 <parthik.j.patel@gmail.com>"]
 edition = "2018"
+license = "Unlicense OR MIT"
+description = """
+ffind is a command line utility that performs the core functionality of Linux's find command, with the ability for "fuzzy" searches and significantly better performance.
+"""
+homepage = "https://github.com/parthik19/ffind"
+documentation = "https://github.com/parthik19/ffind/blob/main/README.md"
+repository = "https://github.com/parthik19/ffind"
+readme = "README.md"
+categories = ["command-line-utilities"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

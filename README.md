@@ -1,6 +1,8 @@
 # ffind
 
-`ffind` is a limited but more performant version of Linux's `find` command. In addition to finding the absolute path of the given file name, `ffind` also support "fuzzy" searches (hence the additional `f`). This is useful when trying to find a file without knowing it's _exact_ name.
+`ffind` is a limited but more performant version of Linux's `find` command. In addition to finding the path of the given file name, `ffind` also supports "fuzzy" searches (hence the additional `f`). This is useful when trying to find a file without knowing it's _exact_ name.
+
+Future versions of `ffind` will attempt to implement many of the useful features of Linux's builtin `find` command.
 
 ## Usage
 
